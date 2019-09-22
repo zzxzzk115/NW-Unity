@@ -10,4 +10,4 @@
 7. done.just refresh the menu and have fun!
 
 ** important **
-8. replace the libffmpeg.so from your nw.js->lib folder! If you don't replace it, the game won't support audio!
+8. replace nw.js-folder->lib->libffmpeg.so with my libffmpeg.so. If you don't replace it, the game won't support audio!
