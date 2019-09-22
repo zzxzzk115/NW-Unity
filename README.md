@@ -8,3 +8,6 @@
 5. create a new directory at /home/cpi/apps/Menu/Unity3D_Games, for example /home/cpi/apps/Menu/Unity3D_Games/yourgame
 6. create a new .sh script at /home/cpi/apps/Menu/Unity3D_Games/yourgame, for example /home/cpi/apps/Menu/Unity3D_Games/yourgame/yourgame.sh, the format refers to game.sh, just need to change the game folder.
 7. done.just refresh the menu and have fun!
+
+** important **
+8. replace the libffmpeg.so from your nw.js->lib folder! If you don't replace it, the game won't support audio!
