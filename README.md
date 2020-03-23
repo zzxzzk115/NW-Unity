@@ -1,9 +1,9 @@
 # GameShell-Unity3D-WebGL
 
 ## How to use?
-1. copy TemplateData, index.html, package.json;
+1. copy `TemplateData`, `index.html`, `package.json`;
 2. paste at your Unity3D-WebGL game's root directory;
-3. edit index.html and replace this:
+3. edit `index.html` and replace this:
 ```
 UnityLoader.instantiate("unityContainer", "Build/catmario_webgl.json");
 ```
@@ -18,4 +18,4 @@ UnityLoader.instantiate("unityContainer", "Build/{YOUR GAME}.json");
 8. done.just refresh the menu and have fun!
 
 ** important **
-9. replace nw.js-folder->lib->libffmpeg.so with my libffmpeg.so. If you don't replace it, the game won't support audio!
+9. replace `nw.js-folder->lib->libffmpeg.so` with my `libffmpeg.so`. If you don't replace it, the game won't support audio!
