@@ -3,7 +3,7 @@
 ## How to use?
 1. copy TemplateData, index.html, package.json;
 2. paste at your Unity3D-WebGL game's root directory;
-3. open index.html and replace this:
+3. edit index.html and replace this:
 ```
 UnityLoader.instantiate("unityContainer", "Build/catmario_webgl.json");
 ```
