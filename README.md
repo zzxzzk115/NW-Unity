@@ -11,10 +11,10 @@ to:
 ```
 UnityLoader.instantiate("unityContainer", "Build/{YOUR GAME}.json");
 ```
-4. upload your game to GameShell, for example:/home/cpi/games/Unity3D/yourgame
-5. create a new directory at /home/cpi/apps/Menu/, for example /home/cpi/apps/Menu/Unity3D_Games
-6. create a new directory at /home/cpi/apps/Menu/Unity3D_Games, for example /home/cpi/apps/Menu/Unity3D_Games/yourgame
-7. create a new .sh script at /home/cpi/apps/Menu/Unity3D_Games/yourgame, for example /home/cpi/apps/Menu/Unity3D_Games/yourgame/yourgame.sh, the format refers to game.sh, just need to change the game folder.
+4. upload your game to GameShell, for example:`/home/cpi/games/Unity3D/yourgame`
+5. create a new directory at `/home/cpi/apps/Menu/`, for example `/home/cpi/apps/Menu/Unity3D_Games`
+6. create a new directory at `/home/cpi/apps/Menu/Unity3D_Games`, for example `/home/cpi/apps/Menu/Unity3D_Games/yourgame`
+7. create a new .sh script at `/home/cpi/apps/Menu/Unity3D_Games/yourgame`, for example `/home/cpi/apps/Menu/Unity3D_Games/yourgame/yourgame.sh`, the format refers to game.sh, just need to change the game folder.
 8. done.just refresh the menu and have fun!
 
 ** important **
