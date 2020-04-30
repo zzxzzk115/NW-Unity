@@ -19,4 +19,5 @@ UnityLoader.instantiate("unityContainer", "Build/{YOUR GAME}.json");
 
 **important**
 9. Replace `nw.js-folder->lib->libffmpeg.so` with my `libffmpeg.so`. If you don't replace it, the game won't support audio!
+
 10. DO NOT use Lima Driver!
