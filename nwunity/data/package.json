@@ -1,0 +1,12 @@
+{
+    "main": "index.html",
+    "name": "Untitled-Game",
+    "window": {
+        "width": 1024,
+        "height": 768,
+        "frame": true,
+        "resizable": true,
+        "transparent": true,
+        "fullscreen": false
+    }
+} 

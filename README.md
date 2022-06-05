@@ -1,24 +1,52 @@
-# GameShell-Unity3D-WebGL
+# NW-Unity
 
-## How to use?
-1. Copy `TemplateData`, `index.html`, `package.json`;
-2. Paste at your Unity3D-WebGL game's root directory;
-3. Edit `index.html` and replace this:
-```
-UnityLoader.instantiate("unityContainer", "Build/catmario_webgl.json");
-```
-to:
-```
-UnityLoader.instantiate("unityContainer", "Build/{YOUR GAME}.json");
-```
-4. Upload your game to GameShell, for example:`/home/cpi/games/Unity3D/yourgame`
-5. Create a new directory at `/home/cpi/apps/Menu/`, for example `/home/cpi/apps/Menu/Unity3D_Games`
-6. Create a new directory at `/home/cpi/apps/Menu/Unity3D_Games`, for example `/home/cpi/apps/Menu/Unity3D_Games/yourgame`
-7. Create a new .sh script at `/home/cpi/apps/Menu/Unity3D_Games/yourgame`, for example `/home/cpi/apps/Menu/Unity3D_Games/yourgame/yourgame.sh`, the format refers to game.sh, just need to change the game folder.
-8. Done! just refresh the menu and have fun!
+NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.
 
-**important**
+## Quick Usage
 
-9. Replace `nw.js-folder->lib->libffmpeg.so` with my `libffmpeg.so`. If you don't replace it, the game won't support audio!
+```bash
+# Install Nw-Unity by pip
+python -m pip install nwunity
 
-10. DO NOT use Lima Driver(before version 0.4)!
+# Package your Unity WebGL game(resolution is 320*240, full screen mode is on) on PC, Linux, or MacOS.
+nwunity -d /path/to/UnityWebGLDir -n 'MyGame' --width 320 --height 240 --fullscreen
+
+# Package your Unity WebGL files on GameShell.
+nwunity -d /path/to/UnityWebGLDir -n 'MyGame' -p GameShell
+```
+
+## How to use
+
+NW-Unity is easy to use. You can install  it by pip.
+
+### Install by pip:
+
+```bash
+python -m pip install nwunity
+```
+
+### Parameters
+
+You can use `nwunity -h` or `nwunity --help` to get help.
+
+| Format           | Parameter Explain                                            |
+| ---------------- | ------------------------------------------------------------ |
+| -d   --directory | Set the root directory of your Unity WebGL files, default is current working directory. |
+| -n   --name      | Set the name of your game, default is 'Untitled-Game'.       |
+| --width          | Set the width of your game window, default is 1024.          |
+| --height         | Set the height of your game window, default is 768.          |
+| --fullscreen     | Set full screen mode on, default is off.                     |
+| --noframe        | Hide window frame title, default is show.                    |
+| --notresizable   | Set resizable mode off, default is on.                       |
+| -p   --platform  | Set platform, default is normal(PC, Linux, MacOS...). Options: GameShell. |
+
+### GameShell tips
+
+Make sure the OS version of your GameShell is 0.5 or newer.
+
+Switch the GPU Driver of your GameShell to Lima if it's not.
+
+## License
+
+The project is under the [MIT](./LICENSE) license.
+
