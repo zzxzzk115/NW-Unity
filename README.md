@@ -1,6 +1,6 @@
 # NW-Unity
 
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![version](https://img.shields.io/badge/version-0.2.0-yellow)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![version](https://img.shields.io/badge/version-0.2.2-yellow)
 
 NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.
 
@@ -39,7 +39,8 @@ You can use `nwunity -h` or `nwunity --help` to get help.
 | --height         | Set the height of your game window, default is 768.          |
 | --fullscreen     | Set full screen mode on, default is off.                     |
 | --noframe        | Hide window frame title, default is show.                    |
-| --notresizable   | Set resizable mode off, default is on.                       |
+| --resizable      | Set resizable mode on, default is off.                       |
+| --transparent    | Set transparent mode on, default is off.                     |
 | -p   --platform  | Set platform, default is normal(PC, Linux, MacOS...). Options: GameShell. |
 
 ### GameShell tips
