@@ -2,7 +2,7 @@ from setuptools import setup
 from os import path
 
 DIR = path.dirname(path.abspath(__file__))
-INSTALL_PACKAGES = open(path.join(DIR, 'requirements.txt')).read().splitlines()
+# INSTALL_PACKAGES = open(path.join(DIR, 'requirements.txt')).read().splitlines()
 
 with open(path.join(DIR, 'README.md')) as f:
     README = f.read()
