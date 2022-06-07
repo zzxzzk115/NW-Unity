@@ -1,3 +1,4 @@
+from genericpath import exists
 import json
 import os
 import shutil
@@ -112,7 +113,11 @@ class GameShellHandler(BaseHandler):
             os.makedirs(game_path)
         with open('data/game_launcher_template.sh', 'r') as f:
             launcher_template_data = f.read()
-        with open(os.path.join(game_path, self.Name + '.sh')) as f:
+        menu_path = os.path.join(self.apps_path, 'Menu')
+        game_menu_path = os.path.join(menu_path, 'UnityGames')
+        if not exists(game_menu_path):
+            os.makedirs(game_menu_path) 
+        with open(os.path.join(game_menu_path, self.Name + '.sh')) as f:
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.Name)
             f.write(game_launcher)
         
@@ -125,4 +130,5 @@ class GameShellHandler(BaseHandler):
         self.json_data_object['window']['transparent'] = True 
         # print(self.json_data_object)
         super().write_package_json(os.path.join(self.dir, 'package.json'))
+        shutil.copy(self.dir, game_path)
         return 0
