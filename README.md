@@ -1,15 +1,23 @@
 # NW-Unity
 
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![version](https://img.shields.io/badge/version-0.2.3-yellow)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![version](https://img.shields.io/badge/version-0.2.5-yellow)
 
 NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.
 
 ## Quick Usage
 
-```bash
-# Install Nw-Unity by pip
-python -m pip install nwunity
+Install by pip on Windows:
+```powershell
+pip install nwunity
+```
 
+Install by pip on Linux:
+```bash
+sudo pip install nwunity
+```
+
+Pack your game:
+```bash
 # Package your Unity WebGL game(resolution is 320*240, full screen mode is on) on PC, Linux, or MacOS.
 nwunity -d /path/to/UnityWebGLDir -n 'MyGame' --width 320 --height 240 --fullscreen
 
