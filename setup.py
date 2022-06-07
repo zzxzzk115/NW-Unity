@@ -19,11 +19,11 @@ setup(
     long_description=README,
     long_description_content_type='text/markdown',
     # install_requires=INSTALL_PACKAGES,
-    version='0.2.5',
+    version='0.2.6',
     url='https://github.com/zzxzzk115/NW-Unity',
     author='Lazy_V',
     author_email='954294627@qq.com',
-    keywords=['nw.js', 'gameshell', 'unity', 'webgl', 'pack'],
+    keywords=['NW.js', 'GameShell', 'Unity', 'WebGL'],
     # tests_require=[
     #     'pytest',
     #     'pytest-cov',
