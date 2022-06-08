@@ -5,7 +5,8 @@ import shutil
 
 data_files = ['escape.js', 'game_launcher_template.sh', 'jquery.min.js',
     'libffmpeg.so', 'package.json', 'style.css']
-
+file_full_path = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(file_full_path, 'data')
 
 class BaseHandler:
     def __init__(self, options, args):
@@ -25,12 +26,12 @@ class BaseHandler:
             print('Error. index.html is not found.')
             return -2
         for data_file in data_files:
-            if not os.path.exists(os.path.join('data/', data_file)):
+            if not os.path.exists(os.path.join(data_path, data_file)):
                 print('Internal Error. Data file [' + data_file + '] is missing.')
                 return -3
-        shutil.copy('data/escape.js', os.path.join(self.dir, 'escape.js'))
-        shutil.copy('data/jquery.min.js', os.path.join(self.dir, 'jquery.min.js'))
-        shutil.copy('data/style.css', os.path.join(self.dir, 'style.css'))
+        shutil.copy(os.path.join(data_path, 'escape.js'), os.path.join(self.dir, 'escape.js'))
+        shutil.copy(os.path.join(data_path, 'jquery.min.js'), os.path.join(self.dir, 'jquery.min.js'))
+        shutil.copy(os.path.join(data_path, 'style.css'), os.path.join(self.dir, 'style.css'))
         with open(indexFilePath, 'r') as f:
             data = f.read()
             data = data.replace('</head>', '''
@@ -41,7 +42,7 @@ class BaseHandler:
             ''')
         with open(indexFilePath, 'w') as f:
             f.write(data)
-        with open('data/package.json', 'r') as f:
+        with open(os.path.join(data_path, 'package.json') , 'r') as f:
             json_data_string = f.read()
             self.json_data_object = json.loads(json_data_string)
         return 0
@@ -102,7 +103,7 @@ class GameShellHandler(BaseHandler):
             print('Error. ~/apps/nwjs-sdk-v0.27.6-linux-arm/lib not found!')
             return -6
 
-        shutil.copy('data/libffmpeg.so', os.path.join(self.nw_lib_path, 'libffmpeg.so'))
+        shutil.copy(os.path.join(data_path, 'libffmpeg.so') , os.path.join(self.nw_lib_path, 'libffmpeg.so'))
 
         unity_games_path = os.path.join(self.games_path, 'Unity')
         if not os.path.exists(unity_games_path):
@@ -110,7 +111,7 @@ class GameShellHandler(BaseHandler):
         game_path = os.path.join(unity_games_path, self.Name)
         if not os.path.exists(game_path):
             os.makedirs(game_path)
-        with open('data/game_launcher_template.sh', 'r') as f:
+        with open(os.path.join(data_path, 'game_launcher_template.sh'), 'r') as f:
             launcher_template_data = f.read()
         menu_path = os.path.join(self.apps_path, 'Menu')
         game_menu_path = os.path.join(menu_path, 'UnityGames')
