@@ -12,14 +12,14 @@ setup(
     packages=['nwunity'],
     entry_points = {
         'console_scripts': [
-            'nwunity = nwunity.main:main',
+            'nwunity = nwunity.cli:main',
         ],
     },
     description="NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.",
     long_description=README,
     long_description_content_type='text/markdown',
     # install_requires=INSTALL_PACKAGES,
-    version='0.2.6',
+    version='0.2.7',
     url='https://github.com/zzxzzk115/NW-Unity',
     author='Lazy_V',
     author_email='954294627@qq.com',
