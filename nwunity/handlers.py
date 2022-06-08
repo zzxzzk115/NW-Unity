@@ -108,7 +108,7 @@ class GameShellHandler(BaseHandler):
         unity_games_path = os.path.join(self.games_path, 'Unity')
         if not os.path.exists(unity_games_path):
             os.makedirs(unity_games_path)
-        game_path = os.path.join(unity_games_path, self.Name)
+        game_path = os.path.join(unity_games_path, self.options.Name)
         if not os.path.exists(game_path):
             os.makedirs(game_path)
         with open(os.path.join(data_path, 'game_launcher_template.sh'), 'r') as f:
@@ -117,8 +117,8 @@ class GameShellHandler(BaseHandler):
         game_menu_path = os.path.join(menu_path, 'UnityGames')
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
-        with open(os.path.join(game_menu_path, self.Name + '.sh')) as f:
-            game_launcher = launcher_template_data.replace('{GAME_NAME}', self.Name)
+        with open(os.path.join(game_menu_path, self.options.Name + '.sh')) as f:
+            game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
         
         self.json_data_object['name'] = self.options.Name
