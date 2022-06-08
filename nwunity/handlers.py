@@ -127,7 +127,7 @@ class GameShellHandler(BaseHandler):
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
         self.make_executable(launcher_path)
-        
+
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = 320
         self.json_data_object['window']['height'] = 240
@@ -137,5 +137,7 @@ class GameShellHandler(BaseHandler):
         self.json_data_object['window']['transparent'] = True 
         # print(self.json_data_object)
         super().write_package_json(os.path.join(self.dir, 'package.json'))
-        shutil.copy(self.dir, game_path)
+        if os.path.exists(game_path):
+            shutil.rmtree(game_path)
+        shutil.copytree(self.dir, game_path)
         return 0
