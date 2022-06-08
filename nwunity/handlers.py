@@ -117,7 +117,7 @@ class GameShellHandler(BaseHandler):
         game_menu_path = os.path.join(menu_path, 'UnityGames')
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
-        with open(os.path.join(game_menu_path, self.options.Name + '.sh')) as f:
+        with open(os.path.join(game_menu_path, self.options.Name + '.sh'), 'w') as f:
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
         
