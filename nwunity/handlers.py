@@ -81,6 +81,11 @@ class GameShellHandler(BaseHandler):
         BaseHandler.__init__(self, options, args)
         return
 
+    def make_executable(self, path):
+        mode = os.stat(path).st_mode
+        mode |= (mode & 0o444) >> 2    # copy R bits to X
+        os.chmod(path, mode)
+
     def handle(self):
         ret = super().handle()
         if ret != 0:
@@ -117,9 +122,11 @@ class GameShellHandler(BaseHandler):
         game_menu_path = os.path.join(menu_path, 'UnityGames')
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
-        with open(os.path.join(game_menu_path, self.options.Name + '.sh'), 'w') as f:
+        launcher_path = os.path.join(game_menu_path, self.options.Name + '.sh')
+        with open(launcher_path, 'w') as f:
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
+        self.make_executable(launcher_path)
         
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = 320
