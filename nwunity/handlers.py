@@ -4,7 +4,7 @@ import shutil
 
 
 data_files = ['escape.js', 'game_launcher_template.sh', 'jquery.min.js',
-    'libffmpeg.so', 'package.json', 'style.css']
+    'libffmpeg.so', 'package.json', 'style.css', 'unity_logo.png']
 file_full_path = os.path.dirname(os.path.abspath(__file__))
 data_path = os.path.join(file_full_path, 'data')
 
@@ -32,6 +32,7 @@ class BaseHandler:
         shutil.copy(os.path.join(data_path, 'escape.js'), os.path.join(self.dir, 'escape.js'))
         shutil.copy(os.path.join(data_path, 'jquery.min.js'), os.path.join(self.dir, 'jquery.min.js'))
         shutil.copy(os.path.join(data_path, 'style.css'), os.path.join(self.dir, 'style.css'))
+        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(self.dir, 'logo.png'))
         with open(indexFilePath, 'r') as f:
             data = f.read()
             data = data.replace('</head>', '''
@@ -71,6 +72,10 @@ class NormalHandler(BaseHandler):
         self.json_data_object['window']['resizable'] = self.options.Resizable
         self.json_data_object['window']['frame'] = not self.options.NoFrame 
         self.json_data_object['window']['transparent'] = self.options.Transparent 
+        if self.options.Icon:
+            self.json_data_object['window']['icon'] = self.options.Icon
+        else:
+            self.json_data_object['window']['icon'] = 'logo.png'
         # print(self.json_data_object)
         super().write_package_json(os.path.join(self.dir, 'package.json'))
         return 0
@@ -85,6 +90,7 @@ class GameShellHandler(BaseHandler):
         mode = os.stat(path).st_mode
         mode |= (mode & 0o444) >> 2    # copy R bits to X
         os.chmod(path, mode)
+        return
 
     def handle(self):
         ret = super().handle()
@@ -120,6 +126,7 @@ class GameShellHandler(BaseHandler):
             launcher_template_data = f.read()
         menu_path = os.path.join(self.apps_path, 'Menu')
         game_menu_path = os.path.join(menu_path, 'UnityGames')
+        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(game_menu_path, 'UnityGames.png'))
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
         launcher_path = os.path.join(game_menu_path, self.options.Name + '.sh')

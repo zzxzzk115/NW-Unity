@@ -1,6 +1,6 @@
 # NW-Unity
 
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity)![PyPI - Python Version](https://img.shields.io/badge/python-3.x-green) ![version](https://img.shields.io/badge/version-0.2.13-yellow)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![PyPI - Python Version](https://img.shields.io/badge/python-3.x-green) ![version](https://img.shields.io/badge/version-0.2.14-yellow)
 
 NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.
 
@@ -53,6 +53,7 @@ You can use `nwunity -h` or `nwunity --help` to get help.
 | --resizable      | Set resizable mode on, default is off.                       |
 | --transparent    | Set transparent mode on, default is off.                     |
 | -p   --platform  | Set platform, default is normal(PC, Linux, MacOS...). Options: GameShell. |
+| -i   --icon      | Set the icon of the game.                                    |
 
 ### GameShell tips
 

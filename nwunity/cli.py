@@ -14,16 +14,17 @@ def main():
     parser.add_option('--resizable', action='store_true', dest='Resizable', help='Set resizable mode on, default is off.', default=False)
     parser.add_option('--transparent', action='store_false', dest='Transparent', help='Set transparent mode on, default is off.', default=True)
     parser.add_option('-p', '--platform', dest='Platform', type='string', help='Set platform, default is Normal(PC, Linux, MacOS...). Options: GameShell.', default='Normal')
+    parser.add_option('-i', '--icon', dest='Icon', type='string', help='Set the icon of the game.', default=None)
     options, args = parser.parse_args()
     if options.Platform == 'Normal':
-        sucessInfo = 'Done. Now you can use NW.js to run your game!'
+        successInfo = 'Done. Now you can use NW.js to run your game!'
         handler = NormalHandler(options, args)
     else:
-        sucessInfo = 'Done.'
+        successInfo = 'Done. Please refresh menu!'
         handler = GameShellHandler(options, args)
     ret = handler.handle()
     if ret != 0:
         print('Error code: ' + str(ret))
     else:
-        print(sucessInfo)
+        print(successInfo)
     return ret
