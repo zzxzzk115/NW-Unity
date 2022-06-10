@@ -17,14 +17,12 @@ def main():
     parser.add_option('-i', '--icon', dest='Icon', type='string', help='Set the icon of the game.', default=None)
     options, args = parser.parse_args()
     if options.Platform == 'Normal':
-        successInfo = 'Done. Now you can use NW.js to run your game!'
         handler = NormalHandler(options, args)
     else:
-        successInfo = 'Done. Please refresh menu!'
         handler = GameShellHandler(options, args)
-    ret = handler.handle()
+    ret, success_info = handler.handle()
     if ret != 0:
         print('Error code: ' + str(ret))
     else:
-        print(successInfo)
+        print(success_info)
     return ret

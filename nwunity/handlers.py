@@ -8,32 +8,37 @@ data_files = ['escape.js', 'game_launcher_template.sh', 'jquery.min.js',
 file_full_path = os.path.dirname(os.path.abspath(__file__))
 data_path = os.path.join(file_full_path, 'data')
 
+
 class BaseHandler:
     def __init__(self, options, args):
         self.options = options
         self.args = args
         return
 
+
     def handle(self):
         # print('Options = ' + str(self.options))
         dir = os.path.abspath(self.options.Dir)
         if not os.path.exists(dir):
-            print('Error. Target directory is not exists.')
+            print('Error. Target directory does not exist.')
             return -1
-        self.dir = dir
-        indexFilePath = os.path.join(dir, 'index.html')
-        if not os.path.exists(indexFilePath):
-            print('Error. index.html is not found.')
+        index_file_path = os.path.join(dir, 'index.html')
+        if not os.path.exists(index_file_path):
+            print('Error. index.html not found.')
             return -2
+        self.out_dir = os.path.join(os.path.dirname(dir), self.options.Name + '_OutPut') 
+        if os.path.exists(self.out_dir):
+            shutil.rmtree(self.out_dir)
+        shutil.copytree(dir, self.out_dir)
         for data_file in data_files:
             if not os.path.exists(os.path.join(data_path, data_file)):
                 print('Internal Error. Data file [' + data_file + '] is missing.')
                 return -3
-        shutil.copy(os.path.join(data_path, 'escape.js'), os.path.join(self.dir, 'escape.js'))
-        shutil.copy(os.path.join(data_path, 'jquery.min.js'), os.path.join(self.dir, 'jquery.min.js'))
-        shutil.copy(os.path.join(data_path, 'style.css'), os.path.join(self.dir, 'style.css'))
-        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(self.dir, 'logo.png'))
-        with open(indexFilePath, 'r') as f:
+        shutil.copy(os.path.join(data_path, 'escape.js'), os.path.join(self.out_dir, 'escape.js'))
+        shutil.copy(os.path.join(data_path, 'jquery.min.js'), os.path.join(self.out_dir, 'jquery.min.js'))
+        shutil.copy(os.path.join(data_path, 'style.css'), os.path.join(self.out_dir, 'style.css'))
+        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(self.out_dir, 'logo.png'))
+        with open(index_file_path, 'r') as f:
             data = f.read()
             data = data.replace('</head>', '''
   <script src="jquery.min.js"></script>
@@ -41,7 +46,8 @@ class BaseHandler:
   <link rel="stylesheet" href="style.css">
   </head>
             ''')
-        with open(indexFilePath, 'w') as f:
+        self.out_index_file_path = os.path.join(self.out_dir, 'index.html')
+        with open(self.out_index_file_path, 'w') as f:
             f.write(data)
         with open(os.path.join(data_path, 'package.json') , 'r') as f:
             json_data_string = f.read()
@@ -60,6 +66,7 @@ class NormalHandler(BaseHandler):
         BaseHandler.__init__(self, options, args)
         return
 
+
     def handle(self):
         ret = super().handle()
         if ret != 0:
@@ -77,8 +84,9 @@ class NormalHandler(BaseHandler):
         else:
             self.json_data_object['window']['icon'] = 'logo.png'
         # print(self.json_data_object)
-        super().write_package_json(os.path.join(self.dir, 'package.json'))
-        return 0
+        super().write_package_json(os.path.join(self.out_dir, 'package.json'))
+        successInfo = 'Done. Output path: [' + self.out_dir  + '] Now you can use NW.js to run your game!'
+        return 0, successInfo
 
 
 class GameShellHandler(BaseHandler):
@@ -86,11 +94,13 @@ class GameShellHandler(BaseHandler):
         BaseHandler.__init__(self, options, args)
         return
 
+
     def make_executable(self, path):
         mode = os.stat(path).st_mode
         mode |= (mode & 0o444) >> 2    # copy R bits to X
         os.chmod(path, mode)
         return
+
 
     def handle(self):
         ret = super().handle()
@@ -146,8 +156,9 @@ class GameShellHandler(BaseHandler):
         self.json_data_object['window']['frame'] = False 
         self.json_data_object['window']['transparent'] = True 
         # print(self.json_data_object)
-        super().write_package_json(os.path.join(self.dir, 'package.json'))
+        super().write_package_json(os.path.join(self.out_dir, 'package.json'))
         if os.path.exists(game_path):
             shutil.rmtree(game_path)
-        shutil.copytree(self.dir, game_path)
-        return 0
+        shutil.copytree(self.out_dir, game_path)
+        successInfo = 'Done. Please refresh menu!'
+        return 0, successInfo
