@@ -1,12 +1,12 @@
 # NW-Unity
 
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![PyPI - Python Version](https://img.shields.io/badge/python-3.x-green) ![version](https://img.shields.io/badge/version-0.2.14-yellow)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/nwunity) ![PyPI - Python Version](https://img.shields.io/badge/python-3.x-green) ![version](https://img.shields.io/badge/version-0.2.15-yellow)
 
 NW-Unity is a tool for auto packing your Unity WebGL output files to a NW.js executable file.
 
 ## Quick Usage
 
-**Install by pip on Windows/Linux:**
+**Install by pip on Windows/Linux/MacOS:**
 
 ```powershell
 pip install nwunity
