@@ -139,7 +139,10 @@ class GameShellHandler(BaseHandler):
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
         shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(game_menu_path, 'UnityGames.png'))
-        launcher_path = os.path.join(game_menu_path, self.options.Name + '.sh')
+        game_menu_game_path = os.path.join(game_menu_path, self.options.Name)
+        if not os.path.exists(game_menu_game_path):
+            os.makedirs(game_menu_game_path)
+        launcher_path = os.path.join(game_menu_game_path, self.options.Name + '.sh')
         with open(launcher_path, 'w') as f:
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
@@ -147,7 +150,7 @@ class GameShellHandler(BaseHandler):
         if self.options.Icon:
             if os.path.exists(self.options.Icon):
                 icon_suffix = os.path.splitext(self.options.Icon)[-1]
-                shutil.copy(self.options.Icon, os.path.join(game_menu_path, self.options.Name + icon_suffix))
+                shutil.copy(self.options.Icon, os.path.join(game_menu_game_path, self.options.Name + icon_suffix))
 
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = 320
