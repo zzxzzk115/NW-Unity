@@ -69,7 +69,7 @@ You can use `nwunity -h` or `nwunity --help` to get help.
 
 ### General tips
 
-Unity WebGL use Brotli to compress files by default, it has a bug: stuck at 90% when loading a game.
+Unity WebGL uses `Brotli` to compress files by default, it has a bug: stuck at 90% when loading a game.
 
 So, we have to change the default settings:
 
