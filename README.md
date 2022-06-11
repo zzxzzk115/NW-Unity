@@ -6,6 +6,16 @@
 
 NW-Unity is a tool for auto packing your Unity WebGL output folder to a NW.js executable folder.
 
+## Showcase
+
+Run on Windows:
+
+![](./images/run_on_windows.png)
+
+Run on GameShell:
+
+![](./images/run_on_gameshell.jpg)
+
 ## Quick Usage
 
 **Install by pip on Windows/Linux/MacOS:**
@@ -57,11 +67,23 @@ You can use `nwunity -h` or `nwunity --help` to get help.
 | -p   --platform  | Set platform, default is normal(PC, Linux, MacOS...). Options: GameShell. |
 | -i   --icon      | Set the icon of the game.                                    |
 
+### General tips
+
+Unity WebGL use Brotli to compress files by default, it has a bug: stuck at 90% when loading a game.
+
+So, we have to change the default settings:
+
+![](./docs/images/3_fix_loading_bug.png)
+
+This may help you.
+
 ### GameShell tips
 
 Make sure the OS version of your GameShell is 0.5 or newer.
 
 Switch the GPU Driver of your GameShell to Lima if it's not.
+
+See more details [here](./docs/GameShellTips.md)
 
 ## License
 
