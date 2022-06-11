@@ -19,7 +19,7 @@ setup(
     long_description=README,
     long_description_content_type='text/markdown',
     # install_requires=INSTALL_PACKAGES,
-    version='0.2.17',
+    version='0.2.18',
     url='https://github.com/zzxzzk115/NW-Unity',
     author='Lazy_V',
     author_email='954294627@qq.com',

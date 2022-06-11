@@ -136,9 +136,9 @@ class GameShellHandler(BaseHandler):
             launcher_template_data = f.read()
         menu_path = os.path.join(self.apps_path, 'Menu')
         game_menu_path = os.path.join(menu_path, 'UnityGames')
-        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(game_menu_path, 'UnityGames.png'))
         if not os.path.exists(game_menu_path):
             os.makedirs(game_menu_path) 
+        shutil.copy(os.path.join(data_path, 'unity_logo.png'), os.path.join(game_menu_path, 'UnityGames.png'))
         launcher_path = os.path.join(game_menu_path, self.options.Name + '.sh')
         with open(launcher_path, 'w') as f:
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
