@@ -144,9 +144,10 @@ class GameShellHandler(BaseHandler):
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
         self.make_executable(launcher_path)
-        if os.path.exists(self.options.Icon):
-            icon_suffix = os.path.splittext(self.options.Icon)[-1]
-            shutil.copy(self.options.Icon, os.path.join(launcher_path, self.options.Name + icon_suffix))
+        if self.options.Icon:
+            if os.path.exists(self.options.Icon):
+                icon_suffix = os.path.splittext(self.options.Icon)[-1]
+                shutil.copy(self.options.Icon, os.path.join(launcher_path, self.options.Name + icon_suffix))
 
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = 320
