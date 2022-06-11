@@ -14,7 +14,7 @@ Run on Windows:
 
 Run on GameShell:
 
-![](./images/run_on_gameshell.jpg)
+![](./images/run_on_gameshell.JPG)
 
 ## Quick Usage
 
