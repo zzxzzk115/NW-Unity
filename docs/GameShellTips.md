@@ -24,7 +24,7 @@ Unity WebGL use Brotli to compress files by default, it has a bug: stuck at 90% 
 
 So, we have to change the default settings:
 
-![](D:/GitRepos/Tools/GameShell-Unity3D-WebGL/docs/images/3_fix_loading_bug.png)
+![](./images/3_fix_loading_bug.png)
 
 ## 4. Build
 
