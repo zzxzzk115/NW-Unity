@@ -6,13 +6,13 @@
 
 NW-Unity is a tool for auto packing your Unity WebGL output folder to a NW.js executable folder.
 
-## Showcase
+----
 
-Run on Windows:
+Sample project runs on Windows:
 
 ![](./images/run_on_windows.png)
 
-Run on GameShell:
+Sample project runs on GameShell:
 
 ![](./images/run_on_gameshell.JPG)
 
@@ -80,6 +80,8 @@ This may help you.
 ### GameShell tips
 
 Make sure the OS version of your GameShell is 0.5 or newer.
+
+You have to build and install mesa 20.1 or newer.
 
 Switch the GPU Driver of your GameShell to Lima if it's not.
 
