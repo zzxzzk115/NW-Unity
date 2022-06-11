@@ -146,7 +146,7 @@ class GameShellHandler(BaseHandler):
         self.make_executable(launcher_path)
         if self.options.Icon:
             if os.path.exists(self.options.Icon):
-                icon_suffix = os.path.splittext(self.options.Icon)[-1]
+                icon_suffix = os.path.splitext(self.options.Icon)[-1]
                 shutil.copy(self.options.Icon, os.path.join(launcher_path, self.options.Name + icon_suffix))
 
         self.json_data_object['name'] = self.options.Name
