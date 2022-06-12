@@ -2,9 +2,19 @@
 
 Make sure the OS version of your GameShell is 0.5 or newer.
 
+You have to build and install mesa 20.1 or newer.
+
 Switch the GPU Driver of your GameShell to Lima if it's not.
 
 ## 1. Upgrade graphics
+
+First check your mesa version:
+
+```bash
+DISPLAY=:0 glxinfo | grep "OpenGL version"
+```
+
+If it shows `OpenGL version string: 2.1 Mesa 20.0.0`, then you have to upgrade the graphics of your GameShell.
 
 Following instructions are from https://github.com/zzxzzk115/GameShell-Scripts :
 
