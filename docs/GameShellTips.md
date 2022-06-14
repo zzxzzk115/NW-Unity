@@ -32,6 +32,12 @@ bash <(curl -s https://raw.githubusercontent.com/zzxzzk115/GameShell-Scripts/mai
 bash <(curl -s https://raw.fastgit.org/zzxzzk115/GameShell-Scripts/main/upgrade_graphics_cn.sh)
 ```
 
+Then you need to reboot your GameShell：
+
+```bash
+sudo reboot
+```
+
 ## 2. Switch to WebGL project
 
 `File->BuildSettings`
