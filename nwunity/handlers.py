@@ -13,7 +13,6 @@ class BaseHandler:
     def __init__(self, options, args):
         self.options = options
         self.args = args
-        return
 
 
     def handle(self):
@@ -58,19 +57,17 @@ class BaseHandler:
     def write_package_json(self, output):
         with open(output, 'w') as f:
             f.write(json.dumps(self.json_data_object, indent=4))
-        return
 
 
 class NormalHandler(BaseHandler):
     def __init__(self, options, args):
         BaseHandler.__init__(self, options, args)
-        return
 
 
     def handle(self):
         ret = super().handle()
         if ret != 0:
-            return ret
+            return ret, None
         
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = self.options.Width
@@ -85,44 +82,42 @@ class NormalHandler(BaseHandler):
             self.json_data_object['window']['icon'] = 'logo.png'
         # print(self.json_data_object)
         super().write_package_json(os.path.join(self.out_dir, 'package.json'))
-        successInfo = 'Done. Output path: [' + self.out_dir  + '] Now you can use NW.js to run your game!'
-        return 0, successInfo
+        success_info = 'Done. Output path: [' + self.out_dir  + '] Now you can use NW.js to run your game!'
+        return 0, success_info
 
 
 class GameShellHandler(BaseHandler):
     def __init__(self, options, args):
         BaseHandler.__init__(self, options, args)
-        return
 
 
     def make_executable(self, path):
         mode = os.stat(path).st_mode
         mode |= (mode & 0o444) >> 2    # copy R bits to X
         os.chmod(path, mode)
-        return
 
 
     def handle(self):
         ret = super().handle()
         if ret != 0:
-            return ret
+            return ret, None
 
         self.home_path = os.path.expanduser('~')
         self.apps_path = os.path.join(self.home_path, 'apps')
         self.games_path = os.path.join(self.home_path, 'games')
         if not os.path.exists(self.apps_path) or not os.path.exists(self.games_path):
             print('Error. ~/apps or ~/games not found! Please run nwunity on GameShell!')
-            return - 4
+            return - 4, None
 
         self.nw_root_path = os.path.join(self.apps_path, 'nwjs-sdk-v0.27.6-linux-arm')
         if not os.path.exists(self.nw_root_path):
             print('Error. ~/apps/nwjs-sdk-v0.27.6-linux-arm not found! You may need to fix it by reinstalling clockwork os.')
-            return -5
+            return -5, None
         
         self.nw_lib_path = os.path.join(self.nw_root_path, 'lib')
         if not os.path.exists(self.nw_lib_path):
             print('Error. ~/apps/nwjs-sdk-v0.27.6-linux-arm/lib not found!')
-            return -6
+            return -6, None
 
         shutil.copy(os.path.join(data_path, 'libffmpeg.so') , os.path.join(self.nw_lib_path, 'libffmpeg.so'))
 
@@ -147,10 +142,9 @@ class GameShellHandler(BaseHandler):
             game_launcher = launcher_template_data.replace('{GAME_NAME}', self.options.Name)
             f.write(game_launcher)
         self.make_executable(launcher_path)
-        if self.options.Icon:
-            if os.path.exists(self.options.Icon):
-                icon_suffix = os.path.splitext(self.options.Icon)[-1]
-                shutil.copy(self.options.Icon, os.path.join(game_menu_game_path, self.options.Name + icon_suffix))
+        if self.options.Icon and os.path.exists(self.options.Icon):
+            icon_suffix = os.path.splitext(self.options.Icon)[-1]
+            shutil.copy(self.options.Icon, os.path.join(game_menu_game_path, self.options.Name + icon_suffix))
 
         self.json_data_object['name'] = self.options.Name
         self.json_data_object['window']['width'] = 320
@@ -164,5 +158,5 @@ class GameShellHandler(BaseHandler):
         if os.path.exists(game_path):
             shutil.rmtree(game_path)
         shutil.copytree(self.out_dir, game_path)
-        successInfo = 'Done. Please refresh menu!'
-        return 0, successInfo
+        success_info = 'Done. Please refresh menu!'
+        return 0, success_info

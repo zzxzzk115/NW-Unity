@@ -4,7 +4,7 @@ from nwunity.handlers import NormalHandler, GameShellHandler
 
 def main():
     usage = "%prog -n/--name <game name> -d/--directory <target dir>"
-    parser = optparse.OptionParser(usage)
+    parser = optparse.OptionParser(usage=usage, version="%prog v0.2.23")
     parser.add_option('-n', '--name', dest='Name', type='string', help="Set the name of your game, default is 'Untitled-Game'.", default='Untitled-Game')
     parser.add_option('-d', '--directory', dest='Dir', type='string', help='Set the root directory of your Unity WebGL files, default is current working directory.', default='.')
     parser.add_option('--width', dest='Width', type='int', help='Set the width of your game window, default is 1024.', default=1024)

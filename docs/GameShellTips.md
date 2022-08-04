@@ -75,6 +75,6 @@ Upload the built output folder to GameShell
 sudo pip3 install nwunity
 
 # Package your Unity WebGL files on GameShell.
-nwunity -d '/path/to/UnityWebGLDir' -n 'MyGame' -p GameShell
+nwunity -d "/path/to/UnityWebGLDir" -n "MyGame" -p GameShell
 ```
 
